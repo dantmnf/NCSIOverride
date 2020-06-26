@@ -1,0 +1,2 @@
+declare ServiceMain
+declare SvchostPushServiceGlobals
