@@ -13,6 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: configure
+      shell: cmd
       run: |
         call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         mkdir build
@@ -21,8 +22,10 @@ jobs:
         set CXX=cl
         cmake -GNinja -DCMAKE_BUILD_TYPE=Release ..
     - name: make
+      shell: cmd
       run: cmake --build build
     - name: dist
+      shell: cmd
       run: |
         mkdir dist
         copy build\nlasvc2.dll dist
