@@ -12,8 +12,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - run: git submodule update --init --recursive
-      shell: cmd
+      with:
+        submodules: recursive
     - name: configure
       shell: cmd
       run: |
