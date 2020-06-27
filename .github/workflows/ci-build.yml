@@ -1,0 +1,32 @@
+name: build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: configure
+      run: |
+        mkdir build
+        cd build & cmake -GNinja -DCMAKE_BUILD_TYPE=Release ..
+    - name: make
+      run: cmake --build build
+    - name: dist
+      run: |
+        mkdir dist
+        copy build\nlasvc2.dll dist
+        copy install.reg dist
+    - name: artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: ncsi-override-amd64
+        # Directory containing files to upload
+        path: dist
