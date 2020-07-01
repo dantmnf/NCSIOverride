@@ -8,6 +8,7 @@ THE INDICATOR DOESN’T TEST YOUR SERVICE AT ALL. INDICATOR SAYS OK DOESN’T ME
 
 ## Installation
 
+Download from GitHub Actions artifacts: [![build](https://github.com/dantmnf/NCSIOverride/workflows/build/badge.svg)](https://github.com/dantmnf/NCSIOverride/actions?query=is%3Asuccess+workflow%3Abuild)
 1. Copy NlaSvc2.dll into system32
 2. Import install.reg
 
