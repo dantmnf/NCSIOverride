@@ -33,29 +33,29 @@ BOOL WINAPI DllMain(HINSTANCE hMod, DWORD fdwReason, LPVOID lpvReserved) {
 #define REG_TYPE_PTR REG_DWORD
 #endif
 
-static uintptr_t GetSymbolOffset(std::string_view name) {
+static std::optional<uintptr_t> GetSymbolOffset(std::string_view name) {
     HKEY hk;
     auto ls = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Services\\NlaSvc\\Parameters\\Internet\\NCSIOverride\\Offsets", 0, KEY_READ, &hk);
-    if (ls != 0) return 0;
+    if (ls != 0) return {};
     DWORD type;
     uintptr_t offset;
     DWORD cb = sizeof(offset);
     ls = RegQueryValueExW(hk, L"NCSI_INTERFACE_ATTRIBUTES_SetCapability", nullptr, &type, reinterpret_cast<LPBYTE>(&offset), &cb);
     RegCloseKey(hk);
-    if (ls != 0) return 0;
-    if (type != REG_TYPE_PTR) return 0;
+    if (ls != 0) return {};
+    if (type != REG_TYPE_PTR) return {};
     return offset;
 }
 
 static constexpr auto NCSI_INTERFACE_ATTRIBUTES_SetCapability = "?SetCapability@NCSI_INTERFACE_ATTRIBUTES@@AEAAXW4_NLA_CONNECTIVITY_FAMILY@@W4_CONNECTIVITY_CAPABILITY@@W4_NLA_CAPABILITY_CHANGE_REASON@@@Z"sv;
 
-void *GetSymbolAddress(HMODULE base, std::string_view name) {
+static std::optional<void*> GetSymbolAddress(HMODULE base, std::string_view name) {
     auto offset = GetSymbolOffset(NCSI_INTERFACE_ATTRIBUTES_SetCapability);
-    if (offset == 0) {
+    if (!offset) {
         OutputDebugStringA("GetSymbolOffset failed");
-        return nullptr;
+        return {};
     }
-    auto ptr = reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(base) + offset);
+    auto ptr = reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(base) + offset.value());
     return ptr;  // 0x0001A55C
 }
 
@@ -141,7 +141,9 @@ static void MySetCapability(NCSI_INTERFACE_ATTRIBUTES *attributes, int family, i
 }
 
 extern "C" void NCSIOverrideAttach(HMODULE hDll) {
-    realSetCapability = reinterpret_cast<decltype(realSetCapability)>(GetSymbolAddress(hDll, NCSI_INTERFACE_ATTRIBUTES_SetCapability));
+    auto optSetCapability = GetSymbolAddress(hDll, NCSI_INTERFACE_ATTRIBUTES_SetCapability);
+    if (!optSetCapability) return;
+    realSetCapability = reinterpret_cast<decltype(realSetCapability)>(optSetCapability.value());
     if (*reinterpret_cast<uint16_t*>(realSetCapability) != 0x5540) {  // check for "push rbp" prolog
         OutputDebugStringA("NCSI_INTERFACE_ATTRIBUTES::SetCapability prolog check failed.");
         return;
