@@ -8,7 +8,8 @@ THE INDICATOR DOESN’T TEST YOUR SERVICE AT ALL. INDICATOR SAYS OK DOESN’T ME
 
 ## Installation
 
-Download from GitHub Actions artifacts: [![build](https://github.com/dantmnf/NCSIOverride/workflows/build/badge.svg)](https://github.com/dantmnf/NCSIOverride/actions?query=is%3Asuccess+workflow%3Abuild)
+Download from GitHub Actions artifacts: [![build](https://github.com/dantmnf/NCSIOverride/workflows/build/badge.svg)](https://github.com/dantmnf/NCSIOverride/actions?query=is%3Asuccess+workflow%3Abuild)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdantmnf%2FNCSIOverride.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdantmnf%2FNCSIOverride?ref=badge_shield)
+
 1. Copy NlaSvc2.dll into system32
 2. Import install.reg
 
@@ -66,3 +67,7 @@ You need MSVC or Clang with MSVC ABI to build this (thanks Detours).
 
 * Current implementation sets the override passively by changing parameter in function call. You need to trigger a reprobe to reflect changed override value.
 * This can’t override physically disconnected interface. 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdantmnf%2FNCSIOverride.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdantmnf%2FNCSIOverride?ref=badge_large)
