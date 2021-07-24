@@ -6,6 +6,11 @@ JUST SAY FUCK OFF TO THAT BULLSHIT INDICATOR. THIS SHOULD NOT BE THE VEDAS TO KE
 
 THE INDICATOR DOESN’T TEST YOUR SERVICE AT ALL. INDICATOR SAYS OK DOESN’T MEAN USER CAN CONNECT TO YOUR SERVICE.
 
+## Notes
+
+* Old versions of npcap (bundled with Wireshark/Nmap) is known to break NCSI.
+* You can trigger a NCSI reprobe by disabling and enabling a random network adapter.
+
 ## Installation
 
 Download from GitHub Actions artifacts: [![build](https://github.com/dantmnf/NCSIOverride/workflows/build/badge.svg)](https://github.com/dantmnf/NCSIOverride/actions?query=is%3Asuccess+workflow%3Abuild)
