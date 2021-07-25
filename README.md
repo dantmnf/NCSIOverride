@@ -8,7 +8,7 @@ THE INDICATOR DOESN’T TEST YOUR SERVICE AT ALL. INDICATOR SAYS OK DOESN’T ME
 
 ## Notes
 
-* Old versions of npcap (bundled with Wireshark/Nmap) is known to break NCSI.
+* Npcap (bundled with Wireshark/Nmap) is known to break NCSI.
 * You can trigger a NCSI reprobe by disabling and enabling a random network adapter.
 
 ## Installation
