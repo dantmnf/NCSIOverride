@@ -32,6 +32,7 @@ jobs:
         mkdir dist
         copy build\nlasvc2.dll dist
         copy install.reg dist
+        copy Update-Offset.ps1 dist
     - name: artifact
       uses: actions/upload-artifact@v1.0.0
       with:
@@ -39,3 +40,17 @@ jobs:
         name: ncsi-override-amd64
         # Directory containing files to upload
         path: dist
+    - name: package for release
+      shell: powershell
+      run: |
+        cd dist
+        Compress-Archive . ..\ncsi-override-amd64.zip
+    - name: prerelease
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Latest Development Build"
+        files: |
+          ncsi-override-amd64.zip

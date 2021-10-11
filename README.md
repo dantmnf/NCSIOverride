@@ -13,9 +13,9 @@ THE INDICATOR DOESN’T TEST YOUR SERVICE AT ALL. INDICATOR SAYS OK DOESN’T ME
 
 ## Installation
 
-Download from GitHub Actions artifacts: [![build](https://github.com/dantmnf/NCSIOverride/workflows/build/badge.svg)](https://github.com/dantmnf/NCSIOverride/actions?query=is%3Asuccess+workflow%3Abuild)
+Download from [Releases](https://github.com/dantmnf/NCSIOverride/releases) or GitHub Actions artifacts: [![build](https://github.com/dantmnf/NCSIOverride/workflows/build/badge.svg)](https://github.com/dantmnf/NCSIOverride/actions?query=is%3Asuccess+workflow%3Abuild)
 1. Copy NlaSvc2.dll into system32
-2. Import install.reg
+2. Import `install.reg`
 
 ## Configuration
 
@@ -54,7 +54,7 @@ Values for DefaultOverrideV4, DefaultOverrideV6, OverrideV4, OverrideV6:
     Wi-Fi      {4efa6faf-9a7c-47bc-8179-6dc85adc9a59}
 
 
-The function offset can be obtained using WinDbg:
+With [Debugging Tools for Windows](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugger-download-tools) installed, the function offset can be updated by running [`Update-Offset.ps1`](Update-Offset.ps1) as administrator, or manually obtained using WinDbg:
 
     C:\Program Files (x86)\Windows Kits\10\Debuggers\x64>windbg rundll32.exe ncsi.dll,NcsiPerformReprobe
     # in WinDbg command window
