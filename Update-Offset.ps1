@@ -24,5 +24,5 @@ if ([System.Environment]::Is64BitOperatingSystem) {
   $type = [Microsoft.Win32.RegistryValueKind]::Dword
 }
 
-[Microsoft.Win32.Registry]::SetValue("HKWY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NlaSvc\Parameters\Internet\NCSIOverride\Offsets\NCSI_INTERFACE_ATTRIBUTES_SetCapability", "NCSI_INTERFACE_ATTRIBUTES_SetCapability", $offset, $type)
+[Microsoft.Win32.Registry]::SetValue("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NlaSvc\Parameters\Internet\NCSIOverride\Offsets", "NCSI_INTERFACE_ATTRIBUTES_SetCapability", $offset, $type)
 Write-Host "Successfully set the offset value in registry."
