@@ -1,5 +1,10 @@
 # NCSIOverride
 
+> ### ⚠ Note
+> NCSI has changed a lot since my last update and this hook no longer works with latest Windows releases, see details in https://github.com/dantmnf/NCSIOverride/issues/2#issuecomment-1362433801 (in Chinese)
+> 
+> Now that NCSI just works on my machine(TM) so I have no plan to update it. Feel free to do it yourself.
+
 Does Windows block some functionality and keep saying you have no Internet, while you are searching for this?
 
 JUST SAY FUCK OFF TO THAT BULLSHIT INDICATOR. THIS SHOULD NOT BE THE VEDAS TO KEEP USER FROM USING ANY FEATURE.
