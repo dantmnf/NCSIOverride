@@ -1,6 +1,6 @@
 # NCSIOverride
 
-> ### ⚠ Note
+> [!CAUTION]
 > NCSI has changed a lot since my last update and this hook no longer works with latest Windows releases, see details in https://github.com/dantmnf/NCSIOverride/issues/2#issuecomment-1362433801 (in Chinese)
 > 
 > Now that NCSI just works on my machine(TM) so I have no plan to update it. Feel free to do it yourself.
